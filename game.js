@@ -8,7 +8,7 @@ var starfield = createStars();
 //Pokretanje igre, stvaranje svemirskog broda i prvih asteroida, pocinje se brojati vrijeme
 function startGame() {
     var pieceSize = Math.min(window.innerWidth, window.innerHeight) * 0.035;
-    myGamePiece = new component(pieceSize, pieceSize, "red", window.innerWidth / 2 - 15, window.innerHeight / 2 - 15);
+    myGamePiece = new component(pieceSize, pieceSize, "red", window.innerWidth / 2 - 15, window.innerHeight / 2 - 15, myGameArea.context);
     generateAsteroids(7);
     if (!myGameArea.interval) {
         startTime = new Date().getTime();
@@ -77,7 +77,7 @@ function generateAsteroid() {
             break;
     }
 
-    var asteroid = new component(asteroidSize, asteroidSize, "gray", x, y);
+    var asteroid = new component(asteroidSize, asteroidSize, "gray", x, y, myGameArea.context);
     asteroid.speed_x = speed_x;
     asteroid.speed_y = speed_y;
     asteroids.push(asteroid);
@@ -275,7 +275,7 @@ function updateTimer() {
     ctx.fillText("Best Player: " + bestPlayer,  window.innerWidth - 200, 60)
 }
 
-function component(width, height, color, x, y) {
+function component(width, height, color, x, y, ctx) {
     this.width = width;
     this.height = height;
     this.speed_x = 0;
