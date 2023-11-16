@@ -216,7 +216,10 @@ var myGameArea = {
         
         this.canvas.addEventListener('touchstart', function (e) {
             e.preventDefault();
+            var touch = e.touches[0];
             myGameArea.touchActive = true;
+            myGameArea.keys.touchX = touch.clientX;
+            myGameArea.keys.touchY = touch.clientY;
         });
         this.canvas.addEventListener('touchend', function (e) {
             e.preventDefault();
@@ -230,6 +233,8 @@ var myGameArea = {
                 var touch = e.touches[0];
                 myGamePiece.speed_x = (touch.clientX - myGamePiece.x) / 10;
                 myGamePiece.speed_y = (touch.clientY - myGamePiece.y) / 10;
+                myGameArea.keys.touchX = touch.clientX;
+                myGameArea.keys.touchY = touch.clientY;
             }
         });
     },
