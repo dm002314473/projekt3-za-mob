@@ -215,12 +215,18 @@ var myGameArea = {
         });
         
         this.canvas.addEventListener('touchstart', function (e) {
+            e.preventDefault();
             myGameArea.keys.touch = true;
+            var touch = e.touches[0];
+            myGameArea.keys.touchX = touch.clientX;
+            myGameArea.keys.touchY = touch.clientY;
         });
         this.canvas.addEventListener('touchend', function (e) {
+            e.preventDefault();
             myGameArea.keys.touch = false;
         });
         this.canvas.addEventListener('touchmove', function (e) {
+            e.preventDefault();
             var touch = e.touches[0];
             myGameArea.keys.touchX = touch.clientX;
             myGameArea.keys.touchY = touch.clientY;
