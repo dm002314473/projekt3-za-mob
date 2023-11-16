@@ -224,6 +224,7 @@ var myGameArea = {
         this.canvas.addEventListener('touchend', function (e) {
             e.preventDefault();
             myGameArea.keys.touch = false;
+            myGameArea.touchActive = false;
         });
         this.canvas.addEventListener('touchmove', function (e) {
             e.preventDefault();
@@ -239,6 +240,11 @@ var myGameArea = {
     },
     stop: function () {
         clearInterval(this.interval);
+        window.removeEventListener('keydown', keyDownHandler);
+        window.removeEventListener('keyup', keyUpHandler);
+        this.canvas.removeEventListener('touchstart', touchStartHandler);
+        this.canvas.removeEventListener('touchend', touchEndHandler);
+        this.canvas.removeEventListener('touchmove', touchMoveHandler);
     }
 };
 
