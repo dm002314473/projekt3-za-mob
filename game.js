@@ -8,7 +8,7 @@ var starfield = createStars();
 //Pokretanje igre, stvaranje svemirskog broda i prvih asteroida, pocinje se brojati vrijeme
 function startGame() {
     var pieceSize = Math.min(window.innerWidth, window.innerHeight) * 0.035;
-    myGamePiece = new component(pieceSize, pieceSize, "red", window.innerWidth / 2 - 15, window.innerHeight / 2 - 15, myGameArea.context);
+    myGamePiece = new component(pieceSize, pieceSize, "red", window.innerWidth / 2 - 15, window.innerHeight / 2 - 15);
     generateAsteroids(7);
     if (!myGameArea.interval) {
         startTime = new Date().getTime();
@@ -77,7 +77,7 @@ function generateAsteroid() {
             break;
     }
 
-    var asteroid = new component(asteroidSize, asteroidSize, "gray", x, y, myGameArea.context);
+    var asteroid = new component(asteroidSize, asteroidSize, "gray", x, y);
     asteroid.speed_x = speed_x;
     asteroid.speed_y = speed_y;
     asteroids.push(asteroid);
@@ -216,23 +216,19 @@ var myGameArea = {
         
         this.canvas.addEventListener('touchstart', function (e) {
             e.preventDefault();
-            var touch = e.touches[0];
             myGameArea.touchActive = true;
+            var touch = e.touches[0];
             myGameArea.keys.touchX = touch.clientX;
             myGameArea.keys.touchY = touch.clientY;
         });
         this.canvas.addEventListener('touchend', function (e) {
             e.preventDefault();
             myGameArea.keys.touch = false;
-            myGamePiece.speed_x = 0;
-            myGamePiece.speed_y = 0;
         });
         this.canvas.addEventListener('touchmove', function (e) {
             e.preventDefault();
             if (myGameArea.touchActive) {
                 var touch = e.touches[0];
-                myGamePiece.speed_x = (touch.clientX - myGamePiece.x) / 10;
-                myGamePiece.speed_y = (touch.clientY - myGamePiece.y) / 10;
                 myGameArea.keys.touchX = touch.clientX;
                 myGameArea.keys.touchY = touch.clientY;
             }
@@ -279,7 +275,7 @@ function updateTimer() {
     ctx.fillText("Best Player: " + bestPlayer,  window.innerWidth - 200, 60)
 }
 
-function component(width, height, color, x, y, ctx) {
+function component(width, height, color, x, y) {
     this.width = width;
     this.height = height;
     this.speed_x = 0;
