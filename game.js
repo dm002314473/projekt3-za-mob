@@ -217,21 +217,19 @@ var myGameArea = {
         this.canvas.addEventListener('touchstart', function (e) {
             e.preventDefault();
             myGameArea.touchActive = true;
-            var touch = e.touches[0];
-            myGameArea.keys.touch = true;
-            myGameArea.keys.touchX = touch.clientX;
-            myGameArea.keys.touchY = touch.clientY;
         });
         this.canvas.addEventListener('touchend', function (e) {
             e.preventDefault();
             myGameArea.keys.touch = false;
+            myGamePiece.speed_x = 0;
+            myGamePiece.speed_y = 0;
         });
         this.canvas.addEventListener('touchmove', function (e) {
             e.preventDefault();
             if (myGameArea.touchActive) {
                 var touch = e.touches[0];
-                myGameArea.keys.touchX = touch.clientX;
-                myGameArea.keys.touchY = touch.clientY;
+                myGamePiece.speed_x = (touch.clientX - myGamePiece.x) / 10;
+                myGamePiece.speed_y = (touch.clientY - myGamePiece.y) / 10;
             }
         });
     },
