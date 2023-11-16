@@ -218,6 +218,7 @@ var myGameArea = {
             e.preventDefault();
             myGameArea.touchActive = true;
             var touch = e.touches[0];
+            myGameArea.keys.touch = true;
             myGameArea.keys.touchX = touch.clientX;
             myGameArea.keys.touchY = touch.clientY;
         });
