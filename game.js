@@ -216,7 +216,7 @@ var myGameArea = {
         
         this.canvas.addEventListener('touchstart', function (e) {
             e.preventDefault();
-            myGameArea.keys.touch = true;
+            myGameArea.touchActive = true;
             var touch = e.touches[0];
             myGameArea.keys.touchX = touch.clientX;
             myGameArea.keys.touchY = touch.clientY;
@@ -227,9 +227,11 @@ var myGameArea = {
         });
         this.canvas.addEventListener('touchmove', function (e) {
             e.preventDefault();
-            var touch = e.touches[0];
-            myGameArea.keys.touchX = touch.clientX;
-            myGameArea.keys.touchY = touch.clientY;
+            if (myGameArea.touchActive) {
+                var touch = e.touches[0];
+                myGameArea.keys.touchX = touch.clientX;
+                myGameArea.keys.touchY = touch.clientY;
+            }
         });
     },
     clear: function () {
