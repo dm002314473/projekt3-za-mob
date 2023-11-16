@@ -240,7 +240,12 @@ var myGameArea = {
     },
     stop: function () {
         clearInterval(this.interval);
-       }
+        window.removeEventListener('keydown', keyDownHandler);
+        window.removeEventListener('keyup', keyUpHandler);
+        this.canvas.removeEventListener('touchstart', touchStartHandler);
+        this.canvas.removeEventListener('touchend', touchEndHandler);
+        this.canvas.removeEventListener('touchmove', touchMoveHandler);
+    }
 };
 
 //Definira kako će se formatirati vrijeme pri ispisu
